@@ -1,1 +1,0 @@
-# mfg-tpc-lotto-web
