@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.mfg-tpc-lotto-web.rule=Host(`tpc-lotto.minorfoodit.com`)"
       - "traefik.http.routers.mfg-tpc-lotto-web.service=mfg-tpc-lotto-web"
       - "traefik.http.routers.mfg-tpc-lotto-web.tls=true"
-      - "traefik.http.services.mfg-tpc-lotto-web.loadbalancer.server.port=3000"
+      - "traefik.http.services.mfg-tpc-lotto-web.loadbalancer.server.port=80"
       - "traefik.docker.network=api_network"
 
 networks:
