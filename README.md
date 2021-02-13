@@ -47,4 +47,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Dockerized Prod
 
 docker build -f Dockerfile.prod -t sample:prod .
+
 docker run -it --rm -p 1337:80 sample:prod
+
+docker-compose up -d
+
+docker-compose down

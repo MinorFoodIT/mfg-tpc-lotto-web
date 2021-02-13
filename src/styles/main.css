@@ -1,0 +1,26 @@
+.main {
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.42857143;
+    font-family: Prompt,sans-serif;
+    font-size: 16px;
+    color: #595959;
+    box-sizing: border-box;
+    min-height: 100%;
+    position: relative;
+}
+
+.header {
+-webkit-tap-highlight-color: transparent;
+line-height: 1.42857143;
+font-family: Prompt,sans-serif;
+font-size: 16px;
+color: #595959;
+box-sizing: border-box;
+display: block;
+width: 100%;
+position: fixed;
+z-index: 100;
+top: 0;
+background: linear-gradient(to bottom,#005a28 0,#006A31 100%);
+padding: 10px 0 5px;
+}
