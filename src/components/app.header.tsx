@@ -14,10 +14,11 @@ export const AppHeader = () => {
     }
 
     return (
-        <Layout.Header className="site-layout-background" style={{ padding: '0 0px',height: '100vh' ,width: '100vh' }}>
+        <Layout.Header className="site-layout-background" style={{ padding: '0 0px',height: '20vh' ,width: '100vh' }}>
             { 
-            <div className="header">
+            <div>
                 <img src="https://cdn.1112delivery.com/1112one/public/images/banners/Feb2021/TPC_NY_CNY_R1_1242_TH.jpg" width="100vh" height="100vh" /> </div>
+                //className="header"
                 // state.isLoggedIn && 
                 // <div className="container">
                 //     {

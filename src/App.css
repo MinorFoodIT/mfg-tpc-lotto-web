@@ -69,9 +69,10 @@
 
 .ant-advanced-search-form {
   padding: 24px 12px;
-  background: #fff;
-  border: 1px solid #d9d9d9;
+  /* background: #fff; */
+  /* border: 1px solid #d9d9d9; */
   border-radius: 2px;
+  color: #fff;
 }
 
 .ant-advanced-search-form .ant-form-item {
@@ -80,6 +81,16 @@
 
 .ant-advanced-search-form .ant-form-item-control-wrapper {
   flex: 1;
+}
+
+.ant-advanced-search-form .ant-form-item .ant-form-item-label > label {
+  color: #fff;
+}
+.ant-advanced-search-form .ant-form-item .ant-checkbox-wrapper {
+  color: #fff;
+}
+.ant-advanced-search-form .send_button {
+  text-align: center;
 }
 
 .trigger {

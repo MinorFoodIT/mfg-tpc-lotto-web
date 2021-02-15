@@ -9,22 +9,20 @@ import { NotFoundPage } from '../pages/404.page'
 
 export const AppContent = () => {
     const state = useContext(StateContext)
-    // useEffect( () => {
-    //     console.group('INTO AppContent::STATECONTEXT')
-    //     console.dir(state)
-    //     console.groupEnd()
-    // })
+    
     return (
         <Router>
             <Layout.Content
                 style={{
-                    margin: '8px 16px',
+                    //margin: '8px 16px',
+                    margin: '0px 0px',
                     padding: '0 8px 16px',
+                    background: 'linear-gradient(to bottom,#005a28 0,#006A31 100%)'
                 }}
             >
                 <Switch>
                     <Route exact path={["/"]} component={NotFoundPage} /> 
-                    <Route exact path={["/app/lotto_register"]} component={LottoRegisPage} />
+                    <Route exact path={["/lotto_register"]} component={LottoRegisPage} />
                 </Switch>
             </Layout.Content>
         </Router>

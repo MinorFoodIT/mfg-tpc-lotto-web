@@ -24,3 +24,21 @@ top: 0;
 background: linear-gradient(to bottom,#005a28 0,#006A31 100%);
 padding: 10px 0 5px;
 }
+
+.tpc-form {
+    width: 100%;
+    top: 0;
+    color: #f9f9f9;
+    transition: all .2s ease;
+    font-family: Prompt,sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tpc-form-input ant-row ant-form-item{
+    color: #f9f9f9;
+}
+
+.p_center {
+    text-align: center;
+}
