@@ -12,7 +12,7 @@ export function AppLayout() {
             <Layout className="site-layout" style={{ minHeight: '100vh' }}>
                 <AppHeader />
                 <AppContent />
-                <AppFooter />
+                {/* <AppFooter /> */}
             </Layout>
         </Layout>
     )

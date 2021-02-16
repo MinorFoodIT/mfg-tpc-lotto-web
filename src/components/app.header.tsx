@@ -3,7 +3,6 @@ import { DispatchContext, StateContext } from '../provider/app.provider'
 import { Layout} from 'antd'
 // import { MenuHeader } from './menu.header'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
-import './../styles/main.css'; 
 
 export const AppHeader = () => {
     const state = useContext(StateContext)
@@ -14,10 +13,10 @@ export const AppHeader = () => {
     }
 
     return (
-        <Layout.Header className="site-layout-background" style={{ padding: '0 0px',height: '20vh' ,width: '100vh' }}>
+        <Layout.Header className="site-layout-background" style={{ padding: '0 0px',height: '20vh' ,width: '100vw' }}>
             { 
-            <div>
-                <img src="https://cdn.1112delivery.com/1112one/public/images/banners/Feb2021/TPC_NY_CNY_R1_1242_TH.jpg" width="100vh" height="100vh" /> </div>
+            <div style={{height: '100%' ,width: '100%' }}>
+                <img src="https://www.2u.in.th/wp-content/uploads/2020/02/Promotion-the-pizza-company-buy-1-free-1-for-2020-1024x680-1.jpg" style={{height: '100%' ,width: '100%' }}/> </div>
                 //className="header"
                 // state.isLoggedIn && 
                 // <div className="container">

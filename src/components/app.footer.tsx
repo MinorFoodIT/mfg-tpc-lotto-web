@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 export const AppFooter = () => {
     return (
         <Layout.Footer style={{ textAlign: 'center' }}>
-            Minor Food - Grab Admin ©2020
+            เดอะ พิซซ่า คอมปะนี
         </Layout.Footer>
     )
 }

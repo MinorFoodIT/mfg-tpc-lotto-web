@@ -165,3 +165,63 @@
   overflow-x: auto;
   margin-bottom: 15px;
 }
+
+
+.main {
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.42857143;
+  font-family: Prompt,sans-serif;
+  font-size: 16px;
+  color: #595959;
+  box-sizing: border-box;
+  min-height: 100%;
+  position: relative;
+}
+
+.header {
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.42857143;
+  font-family: Prompt,sans-serif;
+  font-size: 16px;
+  color: #595959;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  background: linear-gradient(to bottom,#005a28 0,#006A31 100%);
+  padding: 10px 0 5px;
+  }
+
+.tpc-form {
+  margin: 15px 45px;
+  top: 0;
+  color: #f9f9f9;
+  transition: all .2s ease;
+  font-family: Prompt,sans-serif;
+  /* font-size: 16px; */
+  -webkit-font-smoothing: antialiased;
+}
+
+.tpc-form-input ant-row ant-form-item{
+  color: #f9f9f9;
+}
+
+.p_center {
+  text-align: center;
+  width: 100%;
+}
+
+.p_center_card {
+  text-align: center;
+  opacity: 1;
+  background: linear-gradient(to bottom,#005a28 0,#006A31 50%);
+  color: #f9f9f9;
+  
+}
+
+.lotto-form-button {
+ width: 40vw;
+ background-color: #860707;
+}

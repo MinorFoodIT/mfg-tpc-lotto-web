@@ -10,9 +10,8 @@ import {
 import { useImmerReducer } from 'use-immer'
 import reducer from './reducers/app.reducer'
 import { initialState, AppProvider } from './provider/app.provider'
-import { LandingPage } from './pages/landing.page'
-import { LottoRegisPage } from './pages/lotto.regis.page'
-
+// import { LandingPage } from './pages/landing.page'
+// import { LottoRegisPage } from './pages/lotto.regis.page'
 import { AppLayout } from './components/app.layout'
 
 // import { ProtectedRoute } from './routes/protected.route'

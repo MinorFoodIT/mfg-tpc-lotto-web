@@ -1,4 +1,4 @@
-import React ,{useContext,useEffect} from 'react'
+import React ,{useContext} from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import {  StateContext } from '../provider/app.provider'
 
