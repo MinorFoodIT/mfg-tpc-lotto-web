@@ -2,15 +2,15 @@ import React from 'react'
 import { AuthenticationAction, State } from '../types/app.type'
 
 export const initialState: State = {
-    user: {
-        username: '',
-        password: '',
-        role: '',
-        sitegroup: ''
-    },
-    data: {
-        grabOrderId: ''
-    },
+    // user: {
+    //     username: '',
+    //     password: '',
+    //     role: '',
+    //     sitegroup: ''
+    // },
+    // data: {
+    //     grabOrderId: ''
+    // },
     isLoading: false,
     isLoggedIn: false,
     //isLoggedIn: true,

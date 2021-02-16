@@ -1,6 +1,6 @@
 export type State = {
-    user: User,
-    data: Data
+    //user: User,
+    //data: Data
     isLoading?: boolean
     isLoggedIn?: boolean
     error?: string
@@ -8,15 +8,15 @@ export type State = {
     collapsed?: boolean
 }
 
-export type User = {
-    username: string
-    password: string
-    role: string
-    sitegroup: string
-}
-
-export type Data = {
-    grabOrderId: string
+export type LottoCustomer = {
+    firstname: string
+    lastname: string
+    telephone: string
+    citizen: string
+    email: string
+    code: string
+    termOfConditionFlag: boolean
+    dataAcceptedFlag: boolean
 }
 
 interface SetFieldAction { 

@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
 //import { LogoutOutlined } from '@ant-design/icons';
 import { PageLoading } from './page.loading'
+import { registerLottoCustomer } from './../services/lotto.service'
+import { LottoCustomer } from './../types/app.type'
+
 
 type errorMsg = {
     title: string
@@ -24,8 +27,29 @@ export function LottoRegisPage() {
     //const [error_alert, setError_alert] = useState<errorMsg>();
 
 
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
         console.log(values);
+        if(!values.termOfConditionFlag){
+            Modal.error({
+                title: 'Input Error',
+                content: 'Term of condition is required',
+            }) 
+            return Promise.resolve(false);
+        }else{
+            let jsonPostReq  = Object.create({
+                firstname: values.firstname,
+                lastname: values.lastname,
+                telephone: values.telephone,
+                citizen: values.citizen,
+                email: values.email,
+                code: values.code,
+                termOfConditionFlag: values.termOfConditionFlag,
+                dataAcceptedFlag: values.dataAcceptFlag
+            })
+            let data = await registerLottoCustomer(jsonPostReq)
+            alert(JSON.stringify(data))
+            return Promise.resolve(true);
+        }
         //console.log(phonenumber(values.telephone))
     };
     const onFailed = (errorObject: any) => {
@@ -44,9 +68,7 @@ export function LottoRegisPage() {
                 }else if(errItm.name[0] === 'email'){
                     content = 'Email is required'
                 }else if(errItm.name[0] === 'code'){
-                    content = 'Mobile No. is required'
-                }else if(errItm.name[0] === 'termOfConditionFlag'){
-                    content = 'Term of condition is required'
+                    content = 'Code is required'
                 }
                 Modal.error({
                     title: 'Input Error',
@@ -54,8 +76,8 @@ export function LottoRegisPage() {
                 }) 
                 return null
             })
-           
         }
+       
     }
     const isPhonenumber = (inputtxt: string) => 
     {
@@ -103,7 +125,7 @@ export function LottoRegisPage() {
                     onFinish={onFinish}
                     onFinishFailed={onFailed}
                     initialValues={{ 
-            
+                        termOfConditionFlag: true
                     }}
                 >
                 <Form.Item name="firstname" label="ชื่อ / First Name"  rules={[{ required: true }]}>
@@ -121,11 +143,11 @@ export function LottoRegisPage() {
                 <Form.Item name="email" label="อีเมล / Email">
                     <Input />
                 </Form.Item>
-                <Form.Item name="code" label="รหัล / Code" rules={[{ required: true }]}>
+                <Form.Item name="code" label="รหัส / Code" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item>
-                    <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle rules={[{ required: true }]}>
+                    <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle >
                         <Checkbox><u>ฉันยอมรับเงื่อนไขในกิจกรรมและต้องการรับข้อมูลข่าวสารและโปรโมชั่นจาก เดอะพิซซ่าคอมปะนี</u></Checkbox>
                     </Form.Item>
 

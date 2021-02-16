@@ -3,13 +3,7 @@ import { AuthenticationAction, State } from '../types/app.type'
 export default function reducer(draftState: State, action: AuthenticationAction): State {
     switch (action.type) {
         case 'field':
-            if (action.fieldName === 'username') {
-                draftState.user.username = action.payload
-            } else if (action.fieldName === 'password') {
-                draftState.user.password = action.payload
-            } else if (action.fieldName === 'grabOrderId') {
-                draftState.data.grabOrderId = action.payload
-            }
+        
             return draftState
         case 'login':
             draftState.error = ''
@@ -18,8 +12,7 @@ export default function reducer(draftState: State, action: AuthenticationAction)
         case 'success':
             draftState.isLoggedIn = true
             draftState.isLoading = false
-            draftState.user.role = action.role
-            draftState.user.sitegroup = action.sitegroup
+         
             return draftState
         case 'error':
             draftState.error = action.message
@@ -28,8 +21,7 @@ export default function reducer(draftState: State, action: AuthenticationAction)
             return draftState
         case 'logout':
             draftState.isLoggedIn = false
-            draftState.user.username = ''
-            draftState.user.password = ''
+           
             return draftState
         case 'visible':
             draftState.visible = !draftState.visible
