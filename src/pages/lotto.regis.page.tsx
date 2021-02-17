@@ -23,20 +23,23 @@ export function LottoRegisPage() {
                                     
                                     </Col>
                                 </Row> : ''
-
+    const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+ 
     //const [error_alert, setError_alert] = useState<errorMsg>();
 
 
     const onFinish = async (values: any) => {
-        console.log(values);
+        setSubmitLoading(true)
         if(!values.termOfConditionFlag){
             Modal.error({
                 title: 'Input Error',
                 content: 'Term of condition is required',
             }) 
+            setSubmitLoading(false)
             return Promise.resolve(false);
         }else{
-            let jsonPostReq  = Object.create({
+            let jsonPostReq : LottoCustomer 
+            jsonPostReq = Object.assign({
                 firstname: values.firstname,
                 lastname: values.lastname,
                 telephone: values.telephone,
@@ -44,10 +47,35 @@ export function LottoRegisPage() {
                 email: values.email,
                 code: values.code,
                 termOfConditionFlag: values.termOfConditionFlag,
-                dataAcceptedFlag: values.dataAcceptFlag
+                dataAcceptedFlag: values.dataAcceptedFlag
             })
+            console.log(jsonPostReq)
             let data = await registerLottoCustomer(jsonPostReq)
-            alert(JSON.stringify(data))
+            if(data.code !== 200 && data.message !== 'Success'){
+                let desc = ''
+                if(data.message === 'Code is invalid of date'){
+                    desc = 'รหัสชิงโชค ไม่ตรงวันที่ทำรายการ '
+                }else if(data.message === 'Code was registered'){
+                    desc = 'รหัสชิงโชค เคยลงทะเบียนไปแล้ว '
+                }else if(data.message === 'Code is invalid'){
+                    desc = 'รหัสชิงโชคไม่ถูกต้อง '
+                }else if(data.message === 'Code is error'){
+                    desc = 'รหัสชิงโชคไม่ถูกต้อง '
+                }else{
+                    desc = 'รหัสชิงโชคไม่ถูกต้อง '
+                }
+                Modal.error({
+                    title: 'Unsuccesful',
+                    content: 'การลงทะเบียนชิงโชคไม่สำเร็จ : '+desc,
+                }) 
+            }else{
+                Modal.success({
+                    title: 'Succesful',
+                    content: 'การลงทะเบียนชิงโชคสำเร็จ',
+                }) 
+            }
+            //alert(JSON.stringify(data))
+            setSubmitLoading(false)
             return Promise.resolve(true);
         }
         //console.log(phonenumber(values.telephone))
@@ -62,7 +90,7 @@ export function LottoRegisPage() {
                 }else if(errItm.name[0] === 'lastname'){
                     content = 'Lastname is required'
                 }else if(errItm.name[0] === 'telephone'){
-                    content = 'Mobile No. is required'
+                    content = 'Mobile Phone No. is required'
                 }else if(errItm.name[0] === 'citizen'){
                     content = 'Citizen ID is required'
                 }else if(errItm.name[0] === 'email'){
@@ -71,7 +99,7 @@ export function LottoRegisPage() {
                     content = 'Code is required'
                 }
                 Modal.error({
-                    title: 'Input Error',
+                    title: 'Warning',
                     content: content,
                 }) 
                 return null
@@ -109,9 +137,9 @@ export function LottoRegisPage() {
                <Card title="" bordered={false} className="p_center_card">
                     <p>ลงทะเบียนเพื่อลุ้นรับรางวัลจากกิจกรรม</p>
                     <p>ฉลองครบรอบ 20 ปี เดอะพิซซ่าคอมปะนี</p>
-                    <p>แจก Honda Scoopy | 20 คัน</p>
+                    {/* <p>แจก Honda Scoopy | 20 คัน</p>
                     <p>และของรางวัลอีกมากมาย</p>
-                    <p>รวมมูลค่ามากกว่า 1,000,000 บาท</p> 
+                    <p>รวมมูลค่ามากกว่า 1,000,000 บาท</p>  */}
                </Card>
                                  
                </div> 
@@ -125,7 +153,8 @@ export function LottoRegisPage() {
                     onFinish={onFinish}
                     onFinishFailed={onFailed}
                     initialValues={{ 
-                        termOfConditionFlag: true
+                        termOfConditionFlag: true,
+                        dataAcceptedFlag: false
                     }}
                 >
                 <Form.Item name="firstname" label="ชื่อ / First Name"  rules={[{ required: true }]}>
@@ -137,7 +166,7 @@ export function LottoRegisPage() {
                 <Form.Item name="citizen" label="บัตรประชน / Citizen ID." rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="telephone" label="เบอร์มือถือ / Mobile No." rules={[{ required: true, validator: checkMobile }]}>
+                <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="email" label="อีเมล / Email">
@@ -166,7 +195,7 @@ export function LottoRegisPage() {
                 </Form.Item>
 
                 <Form.Item className="send_button">
-                    <Button type="primary" htmlType="submit" className="lotto-form-button" shape="round">
+                    <Button type="primary" htmlType="submit" loading={submitLoading} className="lotto-form-button" shape="round">
                     ส่งข้อมูล
                     </Button>
                 </Form.Item>

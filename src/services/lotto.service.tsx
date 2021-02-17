@@ -27,12 +27,13 @@ export async function registerLottoCustomer( lottoCustomer: LottoCustomer) {
     try {
         const response = await fetch(getUrl('/v1/lotto/webregister'), requestOptions)
         const data = await response.json()
-        if (!response.ok) {
-            const error = (data && data.message) || response.status
-            return Promise.reject(error)
-        }
+        // if (!response.ok) {
+        //     const error = (data && data.message) || response.status
+        //     return Promise.resolve(error)
+        // }
         return data
     } catch (error_1) {
         console.error('There was an error!', error_1)
+        return Promise.reject(error_1)
     }
 }
