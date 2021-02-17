@@ -13,7 +13,6 @@ import { initialState, AppProvider } from './provider/app.provider'
 // import { LandingPage } from './pages/landing.page'
 // import { LottoRegisPage } from './pages/lotto.regis.page'
 import { AppLayout } from './components/app.layout'
-
 // import { ProtectedRoute } from './routes/protected.route'
 // import { NotFoundPage } from './pages/404.page'
 // import { AppLayout } from './components/app.layout'

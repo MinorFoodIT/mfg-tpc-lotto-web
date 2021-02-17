@@ -11,6 +11,7 @@ export const initialState: State = {
     // data: {
     //     grabOrderId: ''
     // },
+    displayHead: true,
     isLoading: false,
     isLoggedIn: false,
     //isLoggedIn: true,

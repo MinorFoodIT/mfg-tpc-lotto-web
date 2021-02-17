@@ -2,8 +2,10 @@ import { AuthenticationAction, State } from '../types/app.type'
 
 export default function reducer(draftState: State, action: AuthenticationAction): State {
     switch (action.type) {
+        case 'showHead':
+            draftState.displayHead = action.showComponent
+            return draftState
         case 'field':
-        
             return draftState
         case 'login':
             draftState.error = ''
@@ -21,7 +23,6 @@ export default function reducer(draftState: State, action: AuthenticationAction)
             return draftState
         case 'logout':
             draftState.isLoggedIn = false
-           
             return draftState
         case 'visible':
             draftState.visible = !draftState.visible

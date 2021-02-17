@@ -1,4 +1,5 @@
-import React, {Suspense,useState} from 'react'
+import React, {Suspense,useState,useContext} from 'react'
+import { DispatchContext } from '../provider/app.provider'
 import { useHistory } from 'react-router-dom'
 import { Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
 //import { LogoutOutlined } from '@ant-design/icons';
@@ -13,6 +14,7 @@ type errorMsg = {
 }
 
 export function LottoRegisPage() { 
+    const dispatch = useContext(DispatchContext)
     const [form] = Form.useForm()
     let history = useHistory()
     const [error, setError] = useState<boolean>(false);
@@ -68,11 +70,14 @@ export function LottoRegisPage() {
                     title: 'Unsuccesful',
                     content: 'การลงทะเบียนชิงโชคไม่สำเร็จ : '+desc,
                 }) 
+               
             }else{
                 Modal.success({
                     title: 'Succesful',
                     content: 'การลงทะเบียนชิงโชคสำเร็จ',
                 }) 
+                dispatch && dispatch({type: 'showHead',showComponent: false})
+                history.push("/lotto.thank")
             }
             //alert(JSON.stringify(data))
             setSubmitLoading(false)

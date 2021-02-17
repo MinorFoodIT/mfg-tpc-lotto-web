@@ -1,6 +1,7 @@
 export type State = {
     //user: User,
     //data: Data
+    displayHead: boolean
     isLoading?: boolean
     isLoggedIn?: boolean
     error?: string
@@ -51,6 +52,10 @@ interface SetCollapsedAction {
     type: 'collapsed'
 }
 
+interface SetHeadAction {
+    type: 'showHead', showComponent: boolean
+}
+
 export type AuthenticationAction = 
 | SetFieldAction 
 | SetLogInAction 
@@ -60,3 +65,4 @@ export type AuthenticationAction =
 | SetVisibleAction 
 | SetInVisibleAction 
 | SetCollapsedAction
+| SetHeadAction

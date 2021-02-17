@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import { DispatchContext, StateContext } from '../provider/app.provider'
+import { DispatchContext } from '../provider/app.provider'
 import { Layout} from 'antd'
 // import { MenuHeader } from './menu.header'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 
 export const AppHeader = () => {
-    const state = useContext(StateContext)
     const dispatch = useContext(DispatchContext)
 
     const toggle = () => {
