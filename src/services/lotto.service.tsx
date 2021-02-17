@@ -22,19 +22,22 @@ import axios from 'axios';
 //       rejectUnauthorized: false
 //     })
 //   });
-  
+https.globalAgent.options.rejectUnauthorized = false;
+
 const axiosRequest = async(lottoCustomer: LottoCustomer):Promise<any> => {
     return new Promise((resolve,reject) => {
-        const agent = new https.Agent({  
+
+        const agent =  new https.Agent({  
             rejectUnauthorized: false
            });
         
+
         const headers = { 
             'Content-Type': 'application/json',
             'client_id': 'minorfoodit'
         }
     
-        axios.post(getUrl('/v1/lotto/webregister'), lottoCustomer, { httpsAgent: agent,timeout: 25000 ,headers: headers} )
+        axios.post(getUrl('/v1/lotto/webregister'), lottoCustomer, { timeout: 25000 ,headers: headers} )
         .then(response => {
             const data = response.data
             resolve(data)

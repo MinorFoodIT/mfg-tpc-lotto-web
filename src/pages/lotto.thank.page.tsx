@@ -31,10 +31,10 @@ export const LottoThankPage = (props: Props) => {
                 <Row>
                     <Col span="4"></Col>
                     <Col span="8" onClick={() => alert('google')} style={{ margin: '8px' }}><Image  preview={false} width={ '30%vw' }
-                    src={`../../google-play.png`} />
+                    src={process.env.PUBLIC_URL + `/../google-play.png`} />
                     </Col>
                     <Col span="8" onClick={() => alert('appstore')} style={{ margin: '8px' }}><Image preview={false}  width={'30%vw'}
-                    src={`../../appstore.png`} />
+                    src={process.env.PUBLIC_URL + `/../appstore.png`} />
                     </Col>
                     <Col span="4"></Col>
                 </Row>
