@@ -36,6 +36,7 @@ export async function registerLottoCustomer( lottoCustomer: LottoCustomer) {
         return data
     } catch (error_1) {
         console.error('There was an error!', error_1)
+        alert(error_1)
         return Promise.reject(error_1)
     }
 }
