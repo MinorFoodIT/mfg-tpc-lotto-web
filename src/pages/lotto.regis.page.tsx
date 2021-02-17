@@ -77,7 +77,11 @@ export function LottoRegisPage() {
                     content: 'การลงทะเบียนชิงโชคสำเร็จ',
                 }) 
                 dispatch && dispatch({type: 'showHead',showComponent: false})
+                alert(history.location.pathname)
+                alert(history.location.hash)
                 history.push("/lotto.thank")
+                alert(history.location.pathname)
+                alert(history.location.hash)
             }
             //alert(JSON.stringify(data))
             setSubmitLoading(false)
@@ -140,8 +144,8 @@ export function LottoRegisPage() {
   
                <div className="p_center">
                <Card title="" bordered={false} className="p_center_card">
-                    <p>ลงทะเบียนเพื่อลุ้นรับรางวัลจากกิจกรรม</p>
-                    <p>ฉลองครบรอบ 20 ปี เดอะพิซซ่าคอมปะนี</p>
+                    <p className="wrap_text">ลงทะเบียนเพื่อลุ้นรับรางวัลจากกิจกรรม</p>
+                    <p className="wrap_text">ฉลองครบรอบ 20 ปี เดอะพิซซ่าคอมปะนี</p>
                     {/* <p>แจก Honda Scoopy | 20 คัน</p>
                     <p>และของรางวัลอีกมากมาย</p>
                     <p>รวมมูลค่ามากกว่า 1,000,000 บาท</p>  */}

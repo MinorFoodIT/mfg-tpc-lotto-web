@@ -221,6 +221,10 @@
   
 }
 
+.wrap_text {
+  word-wrap: normal;
+}
+
 .lotto-form-button {
  width: 40vw;
  background-color: #860707;

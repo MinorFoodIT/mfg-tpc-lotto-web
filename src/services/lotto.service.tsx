@@ -25,8 +25,10 @@ export async function registerLottoCustomer( lottoCustomer: LottoCustomer) {
         body: JSON.stringify(lottoCustomer)
     }
     try {
+        alert(getUrl('/v1/lotto/webregister'))
         const response = await fetch(getUrl('/v1/lotto/webregister'), requestOptions)
         const data = await response.json()
+        alert(data)
         // if (!response.ok) {
         //     const error = (data && data.message) || response.status
         //     return Promise.resolve(error)
