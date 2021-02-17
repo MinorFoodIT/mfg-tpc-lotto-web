@@ -22,7 +22,8 @@ import axios from 'axios';
 //       rejectUnauthorized: false
 //     })
 //   });
-https.globalAgent.options.rejectUnauthorized = false;
+
+//https.globalAgent.options.rejectUnauthorized = false;
 
 const axiosRequest = async(lottoCustomer: LottoCustomer):Promise<any> => {
     return new Promise((resolve,reject) => {
