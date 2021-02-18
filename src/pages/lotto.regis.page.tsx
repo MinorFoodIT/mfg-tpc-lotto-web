@@ -172,7 +172,7 @@ export function LottoRegisPage() {
                 <Form.Item name="lastname" label="นามสกุล / Last Name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="citizen" label="บัตรประชน / Citizen ID." rules={[{ required: true }]}>
+                <Form.Item name="citizen" label="เลขที่บัตรประชาชน / Citizen ID." rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
@@ -181,7 +181,7 @@ export function LottoRegisPage() {
                 <Form.Item name="email" label="อีเมล / Email">
                     <Input />
                 </Form.Item>
-                <Form.Item name="code" label="รหัส / Code" rules={[{ required: true }]}>
+                <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item>
@@ -195,7 +195,7 @@ export function LottoRegisPage() {
                 </Form.Item>
                 <Form.Item>
                     <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle>
-                        <Checkbox>ฉันต้องการรับข้อมูลข่าวสาร กิจกรรมส่งเสริมการขายต่างๆ จาก เดอะ พิซซ่า คอมปะนี และบริษัทในเครือ โดยเราจะเก็บข้อมูลของท่านไว้เป็นความลับ</Checkbox>
+                        <Checkbox><u>ฉันยอมรับเงื่อนไขและต้องการรับข้อมูลข่าวสารกิจกรรมส่งเสริมการขายต่างๆ จาก เดอะพิซซ่าคอมปะนี และบริษัทในเครือ โดยเราจะเก็บข้อมูลของท่านไว้เป็นความลับ</u></Checkbox>
                     </Form.Item>
 
                     {/* <a className="login-form-forgot" href="">
@@ -204,7 +204,7 @@ export function LottoRegisPage() {
                 </Form.Item>
 
                 <Form.Item className="send_button">
-                    <Button type="primary" htmlType="submit" loading={submitLoading} className="lotto-form-button" shape="round">
+                    <Button type="primary" size="large"  htmlType="submit" loading={submitLoading} className="lotto-form-button" shape="round">
                     ส่งข้อมูล
                     </Button>
                 </Form.Item>

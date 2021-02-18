@@ -225,7 +225,11 @@
   word-wrap: normal;
 }
 
-.lotto-form-button {
- width: 40vw;
- background-color: #860707;
+.ant-btn-round.ant-btn-lg.lotto-form-button {
+ width: 200px;
+ height: 50px;
+ font-size: 24px;
+ color: #f9c816;
+ background-color: #c12927;
+ border-color: #c12927;
 }
