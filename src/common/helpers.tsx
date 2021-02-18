@@ -41,6 +41,27 @@ export function replaceUndefined(value: any, replaceValue: any){
     return value;
 }
 
+
+export function validateEmail(email: any) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+export function isPhonenumber(inputtxt: string) {
+  //var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var phoneno = /^\d{10}$/;
+  if( typeof inputtxt !== 'undefined' && inputtxt.match(phoneno))
+  {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+/***
+ *  Unique ID by component
+ */
+
 let uniqueId = 0;
 const getUniqueId = () => uniqueId++;
 

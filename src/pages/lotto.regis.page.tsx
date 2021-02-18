@@ -1,17 +1,18 @@
 import React, {Suspense,useState,useContext} from 'react'
-import { DispatchContext } from '../provider/app.provider'
 import { useHistory } from 'react-router-dom'
+import { DispatchContext } from '../provider/app.provider'
 import { Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
 //import { LogoutOutlined } from '@ant-design/icons';
 import { PageLoading } from './page.loading'
 import { registerLottoCustomer } from './../services/lotto.service'
 import { LottoCustomer } from './../types/app.type'
+import { validateEmail, isPhonenumber } from './../common/helpers'
+import { addEmitHelper } from 'typescript'
 
-
-type errorMsg = {
-    title: string
-    content: string
-}
+// type errorMsg = {
+//     title: string
+//     content: string
+// }
 
 export function LottoRegisPage() { 
     const dispatch = useContext(DispatchContext)
@@ -28,7 +29,6 @@ export function LottoRegisPage() {
     const [submitLoading, setSubmitLoading] = useState<boolean>(false);
  
     //const [error_alert, setError_alert] = useState<errorMsg>();
-
 
     const onFinish = async (values: any) => {
         setSubmitLoading(true)
@@ -51,7 +51,7 @@ export function LottoRegisPage() {
                 termOfConditionFlag: values.termOfConditionFlag,
                 dataAcceptedFlag: values.dataAcceptedFlag
             })
-            console.log(jsonPostReq)
+
             let data = await registerLottoCustomer(jsonPostReq)
             if(data.code !== 200 && data.message !== 'Success'){
                 let desc = ''
@@ -86,7 +86,7 @@ export function LottoRegisPage() {
         //console.log(phonenumber(values.telephone))
     };
     const onFailed = (errorObject: any) => {
-        console.log(errorObject);
+        //console.log(errorObject);
         if(errorObject.errorFields.length > 0){
             errorObject.errorFields.map( (errItm: any) => {
                 let content = ''
@@ -112,17 +112,7 @@ export function LottoRegisPage() {
         }
        
     }
-    const isPhonenumber = (inputtxt: string) => 
-    {
-      //var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-      var phoneno = /^\d{10}$/;
-      if( typeof inputtxt !== 'undefined' && inputtxt.match(phoneno))
-      {
-        return true;
-      }else{
-        return false;
-      }
-    }
+
     const checkMobile = (_: any, value: string ) => {
         //console.log(_)
         //console.log(value)
@@ -131,6 +121,16 @@ export function LottoRegisPage() {
           return Promise.resolve();
         }
         return Promise.reject('Mobile No. is required 10 digits!');
+    };
+
+    const checkEmail = (_: any, value: string ) => {
+        if(value.length > 0){
+            if(validateEmail(value)){    
+                return Promise.resolve();
+            }
+            return Promise.reject('Email is invalid');
+        }
+        return Promise.resolve();
     };
 
 
@@ -174,7 +174,7 @@ export function LottoRegisPage() {
                 <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="email" label="อีเมล / Email">
+                <Form.Item name="email" label="อีเมล / Email" rules={[{ validator: checkEmail }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
@@ -193,10 +193,6 @@ export function LottoRegisPage() {
                     <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle>
                         <Checkbox><u>ฉันยอมรับเงื่อนไขและต้องการรับข้อมูลข่าวสารกิจกรรมส่งเสริมการขายต่างๆ จาก เดอะพิซซ่าคอมปะนี และบริษัทในเครือ โดยเราจะเก็บข้อมูลของท่านไว้เป็นความลับ</u></Checkbox>
                     </Form.Item>
-
-                    {/* <a className="login-form-forgot" href="">
-                    Forgot password
-                    </a> */}
                 </Form.Item>
 
                 <Form.Item className="send_button">
@@ -204,8 +200,6 @@ export function LottoRegisPage() {
                     ส่งข้อมูล
                     </Button>
                 </Form.Item>
-
-               
 
             </Form>
             </div>
