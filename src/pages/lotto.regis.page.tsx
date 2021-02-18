@@ -77,11 +77,7 @@ export function LottoRegisPage() {
                     content: 'การลงทะเบียนชิงโชคสำเร็จ',
                 }) 
                 dispatch && dispatch({type: 'showHead',showComponent: false})
-                alert(history.location.pathname)
-                alert(history.location.hash)
                 history.push("/lotto.thank")
-                alert(history.location.pathname)
-                alert(history.location.hash)
             }
             //alert(JSON.stringify(data))
             setSubmitLoading(false)
