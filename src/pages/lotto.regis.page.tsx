@@ -1,7 +1,7 @@
 import React, {Suspense,useState,useContext} from 'react'
 import { useHistory } from 'react-router-dom'
 import { DispatchContext } from '../provider/app.provider'
-import { Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
+import { Typography,Switch, Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
 //import { LogoutOutlined } from '@ant-design/icons';
 import { PageLoading } from './page.loading'
 import { registerLottoCustomer } from './../services/lotto.service'
@@ -13,6 +13,7 @@ import { addEmitHelper } from 'typescript'
 //     title: string
 //     content: string
 // }
+const { Title, Paragraph, Text, Link } = Typography;
 
 export function LottoRegisPage() { 
     const dispatch = useContext(DispatchContext)
@@ -27,6 +28,7 @@ export function LottoRegisPage() {
                                     </Col>
                                 </Row> : ''
     const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+    const [ellipsis, setEllipsis] = React.useState(true);
  
     //const [error_alert, setError_alert] = useState<errorMsg>();
 
@@ -174,7 +176,7 @@ export function LottoRegisPage() {
                 <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="email" label="อีเมล / Email" rules={[{ validator: checkEmail }]}>
+                <Form.Item name="email" label="อีเมล / Email (ถ้ามี)" rules={[{ validator: checkEmail }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
@@ -183,12 +185,34 @@ export function LottoRegisPage() {
                 <Form.Item>
                     <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle >
                         <Checkbox><u>ฉันยอมรับเงื่อนไขในกิจกรรมและต้องการรับข้อมูลข่าวสารและโปรโมชั่นจาก เดอะพิซซ่าคอมปะนี</u></Checkbox>
+                            <Switch
+                                size="small"
+                                checkedChildren="show" 
+                                unCheckedChildren="close"
+                                checked={ellipsis}
+                                onChange={() => {
+                                setEllipsis(!ellipsis);
+                                }}
+                            />
+
+                            <Paragraph ellipsis={ellipsis}>
+                                ข้อตกลงการเข้าถึงข้อมูล และ
+                                Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+                                Design, a design language for background applications, is refined by Ant UED Team. Ant
+                                Design, a design language for background applications, is refined by Ant UED Team. Ant
+                                Design, a design language for background applications, is refined by Ant UED Team. Ant
+                                Design, a design language for background applications, is refined by Ant UED Team. Ant
+                                Design, a design language for background applications, is refined by Ant UED Team.
+                            </Paragraph>
+                        
+                        
                     </Form.Item>
 
                     {/* <a className="login-form-forgot" href="">
                     Forgot password
                     </a> */}
                 </Form.Item>
+           
                 <Form.Item>
                     <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle>
                         <Checkbox><u>ฉันยอมรับเงื่อนไขและต้องการรับข้อมูลข่าวสารกิจกรรมส่งเสริมการขายต่างๆ จาก เดอะพิซซ่าคอมปะนี และบริษัทในเครือ โดยเราจะเก็บข้อมูลของท่านไว้เป็นความลับ</u></Checkbox>

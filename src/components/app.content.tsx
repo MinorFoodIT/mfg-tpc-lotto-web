@@ -17,7 +17,8 @@ export const AppContent = () => {
                     //margin: '8px 16px',
                     margin: '0px 0px',
                     padding: '0 8px 16px',
-                    background: 'linear-gradient(to bottom,#005a28 0,#006A31 100%)'
+                    // background: 'linear-gradient(to bottom,#005a28 0,#006A31 100%)'
+                    backgroundColor: '#00703c'
                 }}
             >
                 <Switch>

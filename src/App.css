@@ -28,6 +28,15 @@
   align-items: center;
 }
 
+body {
+  margin: 0;
+  font-family: MyFont,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .login-success {
   font: inherit;
   font-weight: bold;
@@ -252,4 +261,179 @@
  color: #f9c816;
  background-color: #c12927;
  border-color: #c12927;
+}
+
+@media screen and (orientation:portrait){
+  .height-100vh {
+    height: 20vh;
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* stack flex items vertically */ /* colum */
+    position: relative;     /* establish nearest positioned ancenstor for absolute positioning */
+  }
+  
+  .center-aligned {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .over-image-center-1 {
+    transform: translate(25%, 70%); 
+    width: 70%;
+  }
+  
+  .over-image-center-2 {
+    transform: translate(55%, -20%); 
+    width: 50%;
+  }
+  .over-image-left {
+    transform: translate(-15%, -200%); 
+    width: 25%;
+  }
+
+  .over-image-right {
+    /* position: absolute;
+    right: 10%;
+    top: 10%; */
+    transform: translate(460%, -500%);
+    /* color: white;
+    font-weight: bold; */
+    width: 25%;
+  }
+
+  .border-box-facebook {
+    border: 0.5px solid white;
+    padding: '5px';
+    display: 'flex';
+    flex-direction: 'column';
+    margin: '10px' 
+  }
+
+  .facebook-layout {
+    width: 25%;
+    transform: translate(150%, -50%);
+  }
+
+  .border-box-appstore {
+    /* border: 0.5px solid #d8df7d; */
+    padding: '5px';
+    display: 'flex';
+    flex-direction: 'column';
+    margin: '10px' 
+  }
+
+  .star-left-layout {
+    transform: translate(-160%, -80%);
+    width: 50%;
+  }
+  .star-right-layout {
+    transform: translate(240%, -50%);
+    width: 50%;
+  }
+  
+  
+  .box-goldtitle {
+    display: 'flex';
+    flex-direction: 'column';
+    
+  }
+  .ribbon-layout {
+    width: 50%;
+    transform: translate(50%, -50%);
+    /*  */
+  }
+  .over-goldtitle {
+    transform: translate(0%, -50%);
+    /* font-size: larger; */
+    font-size: 25px;
+    color: black;
+    /* background-color: linear-gradient(to right,#d8df7d 0,#d8af7d 50%); */
+    background: url(./pages/images/gold-head-bg.png);
+    background-size: 180px;
+    background-repeat: no-repeat; 
+    background-position: center;
+  }
+}
+
+@media screen and (orientation:landscape) { 
+  .height-100vh {
+    height: 20vh;
+    display: flex;           /* establish flex container */
+    flex-direction: row;  /* stack flex items vertically */
+    position: relative;      /* establish nearest positioned ancenstor for absolute positioning */
+  }
+  
+  .center-aligned {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .over-image-center-1 {
+    transform: translate( 70%, 10%); 
+    width: 100%;
+  }
+  
+  .over-image-center-2 {
+    transform: translate(-20%, 10%); 
+    width: 100%;
+  }
+  .over-image-left {
+    transform: translate(-480%, -10%); 
+    width: 65%;
+  }
+  .over-image-right {
+    transform: translate(-420%, 20%);
+    width: 60%;
+  }
+
+  .border-box-facebook {
+    border: 0.5px solid white;
+    padding: '5px';
+    display: 'flex';
+    flex-direction: 'column';
+    margin: '10px' 
+  }
+
+  .facebook-layout {
+    width: 25%;
+    transform: translate(150%, -50%);
+  }
+
+  .border-box-appstore {
+    /* border: 0.5px solid #d8df7d; */
+    padding: '5px';
+    display: 'flex';
+    flex-direction: 'column';
+    margin: '10px' 
+  }
+
+  .star-left-layout {
+    transform: translate(10%, -10%);
+    width: 50%;
+  }
+  .star-right-layout {
+    transform: translate(10%, -10%);
+    width: 50%;
+  }
+
+  .box-goldtitle {
+    display: 'flex';
+    flex-direction: 'column';
+    
+  }
+  .ribbon-layout {
+    width: 50%;
+    transform: translate(50%, -50%);
+    /*  */
+  }
+  .over-goldtitle {
+    transform: translate(0%, -50%);
+    font-size: larger;
+    color: black;
+    /* background-color: linear-gradient(to right,#d8df7d 0,#d8af7d 50%); */
+    background: url(./pages/images/gold-head-bg.png);
+    background-size: 140px;
+    background-repeat: no-repeat; 
+    background-position: center;
+  }
 }
