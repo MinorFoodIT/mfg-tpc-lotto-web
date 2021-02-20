@@ -11,8 +11,11 @@ export function AppLayout() {
     const state = useContext(StateContext)
     return (
         <Layout>
+         {/*  */}
             {/* <MenuSider /> */}
-            <Layout className="site-layout" style={{ minHeight: '100vh' }}>
+            <Layout className="site-layout"  >
+                                {/* style={{  maxHeight: 'calc(140%)' }} */}
+                        {/* minHeight: '100vh' */}
                 { state.displayHead && <AppHeader />
                 }
                 <AppContent />

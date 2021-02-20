@@ -1,4 +1,4 @@
-import React, {Suspense,useState,useContext} from 'react'
+import React, {Suspense,useState,useContext,useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { DispatchContext } from '../provider/app.provider'
 import { Typography,Switch, Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
@@ -17,6 +17,9 @@ const { Title, Paragraph, Text, Link } = Typography;
 
 export function LottoRegisPage() { 
     const dispatch = useContext(DispatchContext)
+    useEffect(() => {
+        dispatch && dispatch({type: 'showHead',showComponent: true})
+    },[])
     const [form] = Form.useForm()
     let history = useHistory()
     const [error, setError] = useState<boolean>(false);
@@ -103,7 +106,7 @@ export function LottoRegisPage() {
                 }else if(errItm.name[0] === 'email'){
                     content = 'Email is required'
                 }else if(errItm.name[0] === 'code'){
-                    content = 'Code is required'
+                    content = 'Code No. is required'
                 }
                 Modal.error({
                     title: 'Warning',
@@ -130,28 +133,24 @@ export function LottoRegisPage() {
             if(validateEmail(value)){    
                 return Promise.resolve();
             }
-            return Promise.reject('Email is invalid');
+            return Promise.reject('Your email is invalid');
         }
-        return Promise.resolve();
+        return Promise.resolve('');
     };
 
 
     return (
         <Suspense fallback={<PageLoading loading={true} />}>
-            <div className="tpc-form">
-  
-               <div className="p_center">
-               <Card title="" bordered={false} className="p_center_card">
-                    <p className="wrap_text">ลงทะเบียนเพื่อลุ้นรับรางวัลจากกิจกรรม</p>
-                    <p className="wrap_text">ฉลองครบรอบ 20 ปี เดอะพิซซ่าคอมปะนี</p>
-                    {/* <p>แจก Honda Scoopy | 20 คัน</p>
-                    <p>และของรางวัลอีกมากมาย</p>
-                    <p>รวมมูลค่ามากกว่า 1,000,000 บาท</p>  */}
-               </Card>
-                                 
-               </div> 
+            <div className="tpc-form" style={{
+                    //margin: '8px 16px',
+                    margin: '0px 0px',
+                    padding: '0 8px 16px',
+                    // background: 'linear-gradient(to bottom,#005a28 0,#006A31 100%)'
+                    backgroundColor: '#00703c',
+                    minHeight: 'calc(100vh * 1.5 )', 
+                    // (45px + 45px) 
+                }}>
                { errorAlert }
-               <Divider />
                <Form
                     form={form}
                     layout="vertical"
@@ -176,7 +175,7 @@ export function LottoRegisPage() {
                 <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="email" label="อีเมล / Email (ถ้ามี)" rules={[{ validator: checkEmail }]}>
+                <Form.Item name="email" label="อีเมล / Email (ถ้ามี)"  rules={[{ validator: checkEmail }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
@@ -197,12 +196,8 @@ export function LottoRegisPage() {
 
                             <Paragraph ellipsis={ellipsis}>
                                 ข้อตกลงการเข้าถึงข้อมูล และ
-                                Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                Design, a design language for background applications, is refined by Ant UED Team. Ant
-                                Design, a design language for background applications, is refined by Ant UED Team.
+                                Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+                                Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
                             </Paragraph>
                         
                         

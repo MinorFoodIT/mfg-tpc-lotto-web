@@ -11,7 +11,8 @@ import facebook from './images/facebook_line.png'
 import goldhead from './images/gold-head.png'
 import startleft from './images/star-left.png'
 import startright from './images/star-right.png'
-
+import logoThank from './images/logo_thank.png'
+import guideLoadApp from './images/guide_load_app.png'
 
 type Props = {
     loading: boolean
@@ -25,15 +26,16 @@ export const LottoThankPage = (props: Props) => {
     },[])
 
     // {process.env.PUBLIC_URL + `/../google-play.png`}
+    // #f9f9f9
     return (
-        <div style={{ paddingTop: '5%', textAlign: 'center' ,color: '#f9f9f9'}}> 
+        <div style={{ paddingTop: '5%', textAlign: 'center' , backgroundColor: '#005e2c' , minHeight: 'calc(100vh * 1.4 )', }}> 
             <br/>
             <section className="height-100vh center-aligned">
-                {/* `https://cdn.1112.com/1112/public/images/logo.svg` */}
-                <Image preview={false} className="over-image-center-1" src={moreLighting} /> 
+                <Image preview={false}  src={logoThank} style={{ width: '100vmin' }} /> 
+                {/* <Image preview={false} className="over-image-center-1" src={moreLighting} /> 
                 <Image  className="over-image-center-2" src={thankLogo} /> 
                 <Image preview={false} className="over-image-left" src={smileLeft} /> 
-                <Image preview={false} className="over-image-right" src={smileRight} />   
+                <Image preview={false} className="over-image-right" src={smileRight} />    */}
             </section>
             <br/> 
             <div style={{padding: 0}}>
@@ -43,7 +45,8 @@ export const LottoThankPage = (props: Props) => {
             <p style={{color: '#d8df7d' ,fontSize: '24px',marginBottom: -10 }}> กรอกรหัสแล้วอย่าเพิ่งทิ้งใบเสร็จ</p>
             <p style={{color: '#d8df7d' ,fontSize: '24px',marginBottom: -10 }}> โปรดเก็บไว้เป็นหลักฐานยืนยันรับรางวัลใหญ่</p>
             <br/> 
-            <div style={{padding: 0 }}>
+            <Image preview={false}  src={guideLoadApp} style={{ width: '100vmin' }} /> 
+            {/* <div style={{padding: 0 }}>
                 <p style={{color: 'white' , fontSize: '24px' , marginBottom: 0 }}>ติดตามผลได้เร็วๆ นี้ที่</p>
                 
                 <div className="border-box-facebook">
@@ -51,9 +54,9 @@ export const LottoThankPage = (props: Props) => {
                     <p style={{color: 'white' , fontSize: '24px' ,fontWeight: 'bold', marginBottom: 0 ,marginTop: -15 }}>The Pizza Company 1112</p>
                 </div>
                 <br/>
-                <div className="border-box-appstore">
+                
+                 <div className="border-box-appstore">
                     <div className="box-goldtitle">
-                        {/* <Image preview={false} src={goldhead} className="ribbon-layout" /> */}
                         <p className="over-goldtitle" >พิเศษสำหรับลูกค้าใหม่</p>
                     </div>
                     <div style={{padding: '1px'}}>
@@ -78,8 +81,8 @@ export const LottoThankPage = (props: Props) => {
                             <Col span="4"></Col>
                         </Row>
                     </div>
-                </div> 
-            </div>  
+                </div>  
+            </div>   */}
 
             
             {/* <p style={{color: '#f9c816'}}>www.facebook.com/thepizzacompany</p>
