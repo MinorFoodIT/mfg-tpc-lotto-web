@@ -1,18 +1,13 @@
 import React, {Suspense,useState,useContext,useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory ,Link as LinkDom } from 'react-router-dom'
 import { DispatchContext } from '../provider/app.provider'
-import { Typography,Switch, Button ,Divider, Form ,Input, Checkbox, Row, Col, Modal, Card} from 'antd'
-//import { LogoutOutlined } from '@ant-design/icons';
+import { Typography,Switch, Button , Form ,Input, Checkbox, Row, Col, Modal, DatePicker} from 'antd'
+
 import { PageLoading } from './page.loading'
 import { registerLottoCustomer } from './../services/lotto.service'
 import { LottoCustomer } from './../types/app.type'
 import { validateEmail, isPhonenumber } from './../common/helpers'
-import { addEmitHelper } from 'typescript'
 
-// type errorMsg = {
-//     title: string
-//     content: string
-// }
 const { Title, Paragraph, Text, Link } = Typography;
 
 export function LottoRegisPage() { 
@@ -25,19 +20,15 @@ export function LottoRegisPage() {
     const [error, setError] = useState<boolean>(false);
     const errorAlert = error ? <Row>
                                     <Col span="8"></Col>
-                                    <Col span="16">
-                                    {/* <Alert message="Form Failed" type="warning" banner closable></Alert> */}
-                                    
+                                    <Col span="16">                                    
                                     </Col>
                                 </Row> : ''
     const [submitLoading, setSubmitLoading] = useState<boolean>(false);
     const [ellipsis, setEllipsis] = React.useState(true);
  
-    //const [error_alert, setError_alert] = useState<errorMsg>();
-
     const onFinish = async (values: any) => {
         setSubmitLoading(true)
-        if(!values.termOfConditionFlag){
+        if(!values.termOfConditionFlag || !values.dataAcceptedFlag){
             Modal.error({
                 title: 'Input Error',
                 content: 'Term of condition is required',
@@ -53,6 +44,8 @@ export function LottoRegisPage() {
                 citizen: values.citizen,
                 email: values.email,
                 code: values.code,
+                invoice: values.invoice,
+                paymentdate: values.purchasedate,
                 termOfConditionFlag: values.termOfConditionFlag,
                 dataAcceptedFlag: values.dataAcceptedFlag
             })
@@ -61,7 +54,7 @@ export function LottoRegisPage() {
             if(data.code !== 200 && data.message !== 'Success'){
                 let desc = ''
                 if(data.message === 'Code is invalid of date'){
-                    desc = 'รหัสชิงโชค ไม่ตรงวันที่ทำรายการ '
+                    desc = 'รหัสชิงโชค ไม่ตรงวันที่ทำรายการ หรือเกินกำหนดเวลาตามที่ระบุไว้'
                 }else if(data.message === 'Code was registered'){
                     desc = 'รหัสชิงโชค เคยลงทะเบียนไปแล้ว '
                 }else if(data.message === 'Code is invalid'){
@@ -82,7 +75,7 @@ export function LottoRegisPage() {
                     content: 'การลงทะเบียนชิงโชคสำเร็จ',
                 }) 
                 dispatch && dispatch({type: 'showHead',showComponent: false})
-                history.push("/lotto.thank")
+                history.push("/thank")
             }
             //alert(JSON.stringify(data))
             setSubmitLoading(false)
@@ -103,10 +96,12 @@ export function LottoRegisPage() {
                     content = 'Mobile Phone No. is required'
                 }else if(errItm.name[0] === 'citizen'){
                     content = 'Citizen ID is required'
-                }else if(errItm.name[0] === 'email'){
-                    content = 'Email is required'
                 }else if(errItm.name[0] === 'code'){
                     content = 'Code No. is required'
+                }else if(errItm.name[0] === 'invoice'){
+                    content = 'Invoice No. is required'
+                }else if(errItm.name[0] === 'purchasedate'){
+                    content = 'Purchase date is required'
                 }
                 Modal.error({
                     title: 'Warning',
@@ -138,7 +133,6 @@ export function LottoRegisPage() {
         return Promise.resolve('');
     };
 
-
     return (
         <Suspense fallback={<PageLoading loading={true} />}>
             <div className="tpc-form" style={{
@@ -160,7 +154,7 @@ export function LottoRegisPage() {
                     onFinishFailed={onFailed}
                     initialValues={{ 
                         termOfConditionFlag: true,
-                        dataAcceptedFlag: false
+                        dataAcceptedFlag: true
                     }}
                 >
                 <Form.Item name="firstname" label="ชื่อ / First Name"  rules={[{ required: true }]}>
@@ -181,37 +175,11 @@ export function LottoRegisPage() {
                 <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item>
-                    <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle >
-                        <Checkbox><u>ฉันยอมรับเงื่อนไขในกิจกรรมและต้องการรับข้อมูลข่าวสารและโปรโมชั่นจาก เดอะพิซซ่าคอมปะนี</u></Checkbox>
-                            <Switch
-                                size="small"
-                                checkedChildren="show" 
-                                unCheckedChildren="close"
-                                checked={ellipsis}
-                                onChange={() => {
-                                setEllipsis(!ellipsis);
-                                }}
-                            />
-
-                            <Paragraph ellipsis={ellipsis}>
-                                ข้อตกลงการเข้าถึงข้อมูล และ
-                                Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-                                Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-                            </Paragraph>
-                        
-                        
-                    </Form.Item>
-
-                    {/* <a className="login-form-forgot" href="">
-                    Forgot password
-                    </a> */}
+                <Form.Item name="invoice" label="เลขที่ใบเสร็จ / Invoice No." rules={[{ required: true }]}>
+                    <Input />
                 </Form.Item>
-           
-                <Form.Item>
-                    <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle>
-                        <Checkbox><u>ฉันยอมรับเงื่อนไขและต้องการรับข้อมูลข่าวสารกิจกรรมส่งเสริมการขายต่างๆ จาก เดอะพิซซ่าคอมปะนี และบริษัทในเครือ โดยเราจะเก็บข้อมูลของท่านไว้เป็นความลับ</u></Checkbox>
-                    </Form.Item>
+                <Form.Item name="purchasedate" label="วันที่ซื้อสินค้า / Purchase Date" rules={[{ required: true }]}>
+                    <DatePicker />
                 </Form.Item>
 
                 <Form.Item className="send_button">
@@ -220,6 +188,42 @@ export function LottoRegisPage() {
                     </Button>
                 </Form.Item>
 
+                <Form.Item>
+                    <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle>
+                        <Checkbox>ฉันได้อ่านและยอมรับ 
+                        <Link href="https://www.1112.com/terms" style={{fontSize: '24px'}} target="_blank">
+                         ข้อกำหนดการใช้งาน </Link> ของเดอะ พิซซ่า คอมปะนี 
+                        </Checkbox>
+                    </Form.Item>
+                    <Form.Item name="termOfConditionEnFlag" valuePropName="checked" noStyle>
+                      <Text style={{fontSize: '20px'}}> I have read and accept the &nbsp;
+                      <Link href="https://www.1112.com/terms" style={{fontSize: '20px'}} target="_blank">
+                       Terms and Conditions</Link> of The Pizza Company</Text>
+                    </Form.Item>
+                   
+                </Form.Item>
+               
+                <Form.Item>
+                <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle >
+                        <Checkbox>ฉันยินยอมให้เดอะ พิซซ่า คอมปะนี และ &nbsp;
+                        <Link href="https://www.minor.com/en/affiliated-companies" style={{fontSize: '24px'}} target="_blank">
+                         บริษัทในเครือ </Link>เก็บรวบรวมใช้ประมวลผล หรือเปิดเผยข้อมูลส่วนบุคคล ตาม
+                         <Link href="https://www.1112.com/privacy" style={{fontSize: '24px'}} target="_blank">
+                         นโยบายความเป็นส่วนตัว</Link> ของเดอะ พิซซ่า คอมปะนี
+                         </Checkbox>
+                    </Form.Item>
+                     <a className="login-form-forgot" href="">
+                    Forgot password
+                    </a> 
+                    <Form.Item name="dataAcceptedEnFlag" valuePropName="checked" noStyle>
+                      <Text style={{fontSize: '20px'}}> I consent The Pizza Company and  &nbsp;
+                      <Link href="https://www.minor.com/en/affiliated-companies"  style={{fontSize: '20px'}} target="_blank">
+                      affiliated companies</Link> to collect, process or disclose my personal information according to the 
+                      <Link href="https://www.1112.com/privacy"  style={{fontSize: '20px'}} target="_blank">
+                      Privacy Policy </Link>
+                      of The Pizza Company </Text>
+                    </Form.Item>
+                </Form.Item>
             </Form>
             </div>
         </Suspense>

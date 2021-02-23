@@ -152,6 +152,29 @@ body {
   overflow-wrap: break-word;
 }
 
+.tpc-form .ant-picker  {
+  border-radius: 18px;
+}
+
+.tpc-form .ant-picker-input > input {
+  font-size: 18px;
+}
+
+h1.ant-typography, .ant-typography h1 {
+  margin-bottom: 0.5em;
+  color: white; 
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.23;
+}
+
+.ant-typography {
+  color: white;
+  overflow-wrap: break-word;
+  font-size: 18px;
+}
+
+
 /* iPhone < 5 and iPhone 5 and Phone 6 and iPhone 6 Plus and iPad */
 @media screen and (device-aspect-ratio: 2/3) ,
        screen and (device-aspect-ratio: 16/9) ,
