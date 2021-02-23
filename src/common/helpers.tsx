@@ -58,6 +58,27 @@ export function isPhonenumber(inputtxt: string) {
   }
 }
 
+export function isValidCardID(inputtxt: string) {
+    //var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    var phoneno = /^\d{13}$/;
+    if( typeof inputtxt !== 'undefined' && inputtxt.match(phoneno))
+    {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+export function isValidCode(inputtxt: string) {
+    //var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    var phoneno = /^\d{20}$/;
+    if( typeof inputtxt !== 'undefined' && inputtxt.match(phoneno))
+    {
+      return true;
+    }else{
+      return false;
+    }
+  }
 /***
  *  Unique ID by component
  */

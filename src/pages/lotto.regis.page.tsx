@@ -6,7 +6,7 @@ import { Typography,Switch, Button , Form ,Input, Checkbox, Row, Col, Modal, Dat
 import { PageLoading } from './page.loading'
 import { registerLottoCustomer } from './../services/lotto.service'
 import { LottoCustomer } from './../types/app.type'
-import { validateEmail, isPhonenumber } from './../common/helpers'
+import { validateEmail, isPhonenumber, isValidCardID ,isValidCode } from './../common/helpers'
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -133,6 +133,22 @@ export function LottoRegisPage() {
         return Promise.resolve('');
     };
 
+    const checkCitizen = (_:any, value: string) => {
+        if(isValidCardID(value)){    
+            return Promise.resolve();
+          }
+          return Promise.reject('Citizen ID is required 13 digits!');
+    }
+
+    const checkLuckyDrawCode = (_:any, value: string) => {
+        if(isValidCode(value)){    
+            return Promise.resolve();
+        }
+        return Promise.reject('Code is required 20 digits!');
+    }
+
+   
+
     return (
         <Suspense fallback={<PageLoading loading={true} />}>
             <div className="tpc-form" style={{
@@ -163,7 +179,7 @@ export function LottoRegisPage() {
                 <Form.Item name="lastname" label="นามสกุล / Last Name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="citizen" label="เลขที่บัตรประชาชน / Citizen ID." rules={[{ required: true }]}>
+                <Form.Item name="citizen" label="เลขที่บัตรประชาชน / Citizen ID." rules={[{ required: true ,validator: checkCitizen}]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="telephone" label="เบอร์มือถือ / Mobile Phone No." rules={[{ required: true, validator: checkMobile }]}>
@@ -172,22 +188,15 @@ export function LottoRegisPage() {
                 <Form.Item name="email" label="อีเมล / Email (ถ้ามี)"  rules={[{ validator: checkEmail }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true }]}>
-                    <Input />
+                <Form.Item name="code" label="รหัสร่วมลุ้นโชค / Code No." rules={[{ required: true ,max: 20,validator: checkLuckyDrawCode }]}>
+                    <Input placeholder="ใส่รหัสร่วมลุ้นโชค เป็นตัวเลขติดกัน"  />
                 </Form.Item>
                 <Form.Item name="invoice" label="เลขที่ใบเสร็จ / Invoice No." rules={[{ required: true }]}>
-                    <Input />
+                    <Input  placeholder="ใส่เลขที่ใบเสร็จ เป็นตัวเลขและขีดกลาง" />
                 </Form.Item>
                 <Form.Item name="purchasedate" label="วันที่ซื้อสินค้า / Purchase Date" rules={[{ required: true }]}>
                     <DatePicker />
                 </Form.Item>
-
-                <Form.Item className="send_button">
-                    <Button type="primary" size="large"  htmlType="submit" loading={submitLoading} className="lotto-form-button" shape="round">
-                    ส่งข้อมูล
-                    </Button>
-                </Form.Item>
-
                 <Form.Item>
                     <Form.Item name="termOfConditionFlag" valuePropName="checked" noStyle>
                         <Checkbox>ฉันได้อ่านและยอมรับ 
@@ -204,7 +213,7 @@ export function LottoRegisPage() {
                 </Form.Item>
                
                 <Form.Item>
-                <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle >
+                   <Form.Item name="dataAcceptedFlag" valuePropName="checked" noStyle >
                         <Checkbox>ฉันยินยอมให้เดอะ พิซซ่า คอมปะนี และ &nbsp;
                         <Link href="https://www.minor.com/en/affiliated-companies" style={{fontSize: '24px'}} target="_blank">
                          บริษัทในเครือ </Link>เก็บรวบรวมใช้ประมวลผล หรือเปิดเผยข้อมูลส่วนบุคคล ตาม
@@ -212,9 +221,6 @@ export function LottoRegisPage() {
                          นโยบายความเป็นส่วนตัว</Link> ของเดอะ พิซซ่า คอมปะนี
                          </Checkbox>
                     </Form.Item>
-                     <a className="login-form-forgot" href="">
-                    Forgot password
-                    </a> 
                     <Form.Item name="dataAcceptedEnFlag" valuePropName="checked" noStyle>
                       <Text style={{fontSize: '20px'}}> I consent The Pizza Company and  &nbsp;
                       <Link href="https://www.minor.com/en/affiliated-companies"  style={{fontSize: '20px'}} target="_blank">
@@ -224,6 +230,12 @@ export function LottoRegisPage() {
                       of The Pizza Company </Text>
                     </Form.Item>
                 </Form.Item>
+                <Form.Item className="send_button">
+                    <Button type="primary" size="large"  htmlType="submit" loading={submitLoading} className="lotto-form-button" shape="round">
+                    ส่งข้อมูล
+                    </Button>
+                </Form.Item>
+
             </Form>
             </div>
         </Suspense>
